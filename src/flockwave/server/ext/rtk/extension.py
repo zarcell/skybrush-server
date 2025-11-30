@@ -691,6 +691,9 @@ class RTKExtension(Extension):
             is RTKConfigurationPresetType.USER
         }
 
+        if not user_preset_file.parent.exists():
+            user_preset_file.parent.mkdir(parents=True, exist_ok=True)
+
         with user_preset_file.open("w") as fp:
             try:
                 json.dump(user_presets, fp, indent=2, sort_keys=True)
